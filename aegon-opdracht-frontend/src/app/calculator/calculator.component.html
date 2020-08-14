@@ -1,0 +1,25 @@
+<div>
+    <h1>Aegon calculator</h1>
+
+    <form class="calc-form" [formGroup]="calcForm" (ngSubmit)="calculate()">
+        <div>
+            <a (click)="addCalculation()">Add row</a>
+        </div>
+        <div formArrayName="calculations" *ngFor="let calc of calculationControls; let i=index">
+            <div [formGroupName]="i">
+                <input type="number" formControlName="leftNumber" required />
+                <select formControlName="operator">
+                    <option>+</option>
+                    <option>-</option>
+                    <option>*</option>
+                    <option>/</option>
+                </select>
+                <input type="number" formControlName="rightNumber" required />
+                <span *ngIf="result"> = {{result[i]}}</span>
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Calculate" />
+        </div>
+    </form>
+</div>
